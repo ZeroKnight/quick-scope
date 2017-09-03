@@ -115,7 +115,9 @@ endfunction
 
 " Set or append to a custom highlight group.
 function! s:add_to_highlight_group(group, attr, color)
-  execute printf("highlight %s %s%s=%s", a:group, s:get_term(), a:attr, a:color)
+  if a:color != -1 && a:color != ""
+    execute printf("highlight %s %s%s=%s", a:group, s:get_term(), a:attr, a:color)
+  endif
 endfunction
 
 " Set the colors used for highlighting.
@@ -164,12 +166,8 @@ function! s:set_highlight_colors()
         let s:bg_color_second = g:qs_second_occurrence_highlight_bgcolor
     endif
 
-    if bg_color_first != -1
-      call s:add_to_highlight_group(s:hi_group_primary, 'bg', s:bg_color_first)
-    endif
-    if bg_color_first != -1
-      call s:add_to_highlight_group(s:hi_group_secondary, 'bg', s:bg_color_second)
-    endif
+    call s:add_to_highlight_group(s:hi_group_primary, 'bg', s:bg_color_first)
+    call s:add_to_highlight_group(s:hi_group_secondary, 'bg', s:bg_color_second)
   endif
 endfunction
 
