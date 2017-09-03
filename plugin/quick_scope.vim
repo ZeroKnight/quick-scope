@@ -154,21 +154,21 @@ function! s:set_highlight_colors()
   " Preserve the background color of cursorline if it exists.
   if &cursorline
     if !exists('g:qs_first_occurrence_highlight_bgcolor')
-        let bg_color_first = synIDattr(synIDtrans(hlID('CursorLine')), 'bg', s:get_term())
+        let s:bg_color_first = synIDattr(synIDtrans(hlID('CursorLine')), 'bg', s:get_term())
     else
-        let bg_color_first = g:qs_first_occurrence_highlight_bgcolor
+        let s:bg_color_first = g:qs_first_occurrence_highlight_bgcolor
     endif
     if !exists('g:qs_second_occurrence_highlight_bgcolor')
-        let bg_color_second = synIDattr(synIDtrans(hlID('CursorLine')), 'bg', s:get_term())
+        let s:bg_color_second = synIDattr(synIDtrans(hlID('CursorLine')), 'bg', s:get_term())
     else
-        let bg_color_second = g:qs_second_occurrence_highlight_bgcolor
+        let s:bg_color_second = g:qs_second_occurrence_highlight_bgcolor
     endif
 
     if bg_color_first != -1
-      call s:add_to_highlight_group(s:hi_group_primary, 'bg', bg_color_first)
+      call s:add_to_highlight_group(s:hi_group_primary, 'bg', s:bg_color_first)
     endif
     if bg_color_first != -1
-      call s:add_to_highlight_group(s:hi_group_secondary, 'bg', bg_color_second)
+      call s:add_to_highlight_group(s:hi_group_secondary, 'bg', s:bg_color_second)
     endif
   endif
 endfunction
